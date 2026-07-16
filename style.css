@@ -291,10 +291,15 @@ body {
 }
 
 .link-arrow {
+  color: #3B82F6;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
   transition: gap 0.25s ease, color 0.25s ease;
 }
 .link-arrow:hover {
-  color: var(--accent-soft);
+  color: #60A5FA;
+  text-underline-offset: 4px;
 }
 
 /* ---------- Stat numbers ---------- */
