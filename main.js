@@ -1,4 +1,4 @@
-﻿// ---------- Reveal on scroll ----------
+// ---------- Reveal on scroll ----------
 function initReveal() {
   const items = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver(
@@ -98,6 +98,26 @@ function initNav() {
   }
 }
 
+// ---------- Disable video download / save-as ----------
+function disableVideoDownload() {
+  const disable = (v) => {
+    if (!v) return;
+    v.setAttribute('controlslist', 'nodownload noplaydownload');
+    v.removeAttribute('download');
+    v.oncontextmenu = (e) => { e.preventDefault(); return false; };
+    v.addEventListener('dragstart', (e) => e.preventDefault());
+  };
+  document.querySelectorAll('video').forEach(disable);
+  // Block right-click "save video" / drag on the whole document for videos
+  document.addEventListener('contextmenu', (e) => {
+    const t = e.target;
+    if (t && (t.tagName === 'VIDEO' || (t.closest && t.closest('video')))) {
+      e.preventDefault();
+      return false;
+    }
+  });
+}
+
 // ---------- Video Lightbox: fullscreen video playback ----------
 function initVideoLightbox() {
   const videoLightbox = document.getElementById('video-lightbox');
@@ -162,6 +182,7 @@ function init() {
   initVideoLightbox();
   initNav();
   initFilters();
+  disableVideoDownload();
 }
 
 document.addEventListener('DOMContentLoaded', init);
