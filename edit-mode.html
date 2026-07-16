@@ -1,0 +1,57 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>编辑模式 · 温梦影视作品集</title>
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+      .edit-shell { max-width: 760px; margin: 0 auto; padding: 120px 20px 80px; }
+      .edit-head { margin-bottom: 32px; }
+      .edit-head h1 { font-family: "Playfair Display", Georgia, serif; font-size: 2rem; font-weight: 600; }
+      .edit-head p { color: var(--ink-muted); margin-top: 8px; font-size: 0.9rem; }
+      .edit-group { margin-bottom: 28px; }
+      .edit-group > label { display: block; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+      .edit-field { margin-bottom: 14px; }
+      .edit-field span { display: block; font-size: 0.78rem; color: var(--ink-faint); margin-bottom: 5px; }
+      .edit-field textarea {
+        width: 100%; background: var(--surface-1); border: 1px solid var(--hairline);
+        border-radius: 8px; color: var(--ink); padding: 10px 12px; font-family: Inter, system-ui, sans-serif;
+        font-size: 0.95rem; line-height: 1.5; resize: vertical; min-height: 42px;
+      }
+      .edit-field textarea:focus { outline: none; border-color: var(--accent); }
+      .edit-actions { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; z-index: 60; }
+      .btn { padding: 12px 24px; border-radius: 999px; font-size: 0.9rem; font-weight: 500; cursor: pointer; border: 1px solid var(--hairline); background: var(--surface-2); color: var(--ink); transition: all 0.2s; }
+      .btn-primary { background: var(--accent); color: #000; border-color: var(--accent); }
+      .btn-primary:hover { background: var(--accent-soft); }
+      .btn:hover { border-color: var(--accent); }
+      .edit-toast { position: fixed; top: 24px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #000; padding: 10px 22px; border-radius: 999px; font-size: 0.85rem; font-weight: 500; opacity: 0; transition: opacity 0.3s; z-index: 70; pointer-events: none; }
+      .edit-toast.show { opacity: 1; }
+    </style>
+  </head>
+  <body class="bg-canvas text-ink font-body antialiased">
+    <header class="site-nav fixed top-0 inset-x-0 z-50">
+      <div class="max-w-7xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
+        <span class="font-display text-lg tracking-wide text-ink">编辑模式<span class="text-accent">.</span></span>
+        <a href="./index.html" class="text-sm text-ink-muted hover:text-accent-soft">← 返回观看页</a>
+      </div>
+    </header>
+
+    <div class="edit-shell">
+      <div class="edit-head">
+        <h1>文字内容编辑</h1>
+        <p>修改下方文字后点击「保存」，刷新观看页（index.html）即生效。所有改动保存在本地浏览器。</p>
+      </div>
+
+      <div id="edit-root"></div>
+    </div>
+
+    <div class="edit-toast" id="toast">已保存 ✓</div>
+    <div class="edit-actions">
+      <button class="btn" id="btn-preview">预览观看页</button>
+      <button class="btn btn-primary" id="btn-save">保存修改</button>
+    </div>
+
+    <script src="./edit.js"></script>
+  </body>
+</html>
